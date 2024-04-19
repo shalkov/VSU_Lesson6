@@ -57,7 +57,6 @@ class MainActivity : AppCompatActivity() {
             }
             example5Btn.setOnClickListener {
                 example2OkHttp.sendRequest(
-                    this@MainActivity,
                     onSuccess = { responseObject ->
                         runOnUiThread {
                             Log.d("LESSON6", responseObject.toString())

@@ -1,8 +1,5 @@
 package ru.shalkoff.vsu_lesson6.okhttp
 
-import android.content.Context
-import android.util.Log
-import android.widget.Toast
 import com.google.gson.Gson
 import okhttp3.Call
 import okhttp3.Callback
@@ -15,7 +12,6 @@ import java.io.IOException
 class Example2OkHttp {
 
     fun sendRequest(
-        context: Context,
         onSuccess: ((ApiResponse) -> Unit)? = null,
         onError: (() -> Unit)? = null
     ) {
