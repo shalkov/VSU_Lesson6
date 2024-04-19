@@ -8,8 +8,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.shalkoff.vsu_lesson6.Const.API_URL
-import java.io.BufferedReader
-import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -34,7 +32,6 @@ class Example1HttpURLConnection {
     }
 
     private fun request(): String? {
-        var responseBody: String? = null
         val url = URL(API_URL)
         val conn = url.openConnection() as HttpURLConnection
         conn.requestMethod = "GET"
@@ -42,15 +39,11 @@ class Example1HttpURLConnection {
         val responseCode = conn.responseCode
         if (responseCode == HttpURLConnection.HTTP_OK) {
             val inputStream = conn.inputStream
-            val reader = BufferedReader(InputStreamReader(inputStream))
-            val response = StringBuilder()
-            var line: String?
-            while (reader.readLine().also { line = it } != null) {
-                response.append(line)
+            val response = inputStream.bufferedReader().use {
+                it.readText()
             }
-            reader.close()
-            responseBody = response.toString()
+            return response
         }
-        return responseBody
+        return null
     }
 }

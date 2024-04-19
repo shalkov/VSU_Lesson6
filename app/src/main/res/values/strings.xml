@@ -3,4 +3,6 @@
     <string name="example1_text">Example1</string>
     <string name="example2_text">Example2</string>
     <string name="example3_text">Example3</string>
+    <string name="example4_text">Example4 (Okhttp execute)</string>
+    <string name="example5_text">Example5 (Okhttp enqueue)</string>
 </resources>

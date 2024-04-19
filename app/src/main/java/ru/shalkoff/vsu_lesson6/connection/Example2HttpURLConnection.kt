@@ -12,8 +12,6 @@ import ru.shalkoff.vsu_lesson6.models.Departure
 import ru.shalkoff.vsu_lesson6.models.Info
 import ru.shalkoff.vsu_lesson6.models.Route
 import ru.shalkoff.vsu_lesson6.models.TimeItem
-import java.io.BufferedReader
-import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -26,15 +24,13 @@ import java.net.URL
 class Example2HttpURLConnection {
 
     fun sendRequest(context: Context) {
-        // Создаем Handler, связанный с основным (UI) потоком
-        val mainHandler = Handler(Looper.getMainLooper())
 
         // Запуск операции в фоновом потоке с помощью Thread
         Thread {
             val result = request() ?: ApiResponse.EMPTY
 
-            // Отображаем результат в основной (UI) поток с помощью mainHandler
-            mainHandler.post {
+            // Отображаем результат в основной (UI) поток с помощью Handler
+            Handler(Looper.getMainLooper()).post {
                 // Показать результат на UI, например, с помощью Toast
                 Toast.makeText(context, "#2 Запрос выполнился", Toast.LENGTH_SHORT).show()
                 Log.d("LESSON6", result.toString())
@@ -52,14 +48,9 @@ class Example2HttpURLConnection {
         if (responseCode == HttpURLConnection.HTTP_OK) {
             // Чтение и обработка ответа
             val inputStream = conn.inputStream
-            val reader = BufferedReader(InputStreamReader(inputStream))
-            val response = StringBuilder()
-            var line: String?
-            while (reader.readLine().also { line = it } != null) {
-                response.append(line)
+            val responseBody = inputStream.bufferedReader().use {
+                it.readText()
             }
-            reader.close()
-            val responseBody = response.toString()
 
             // Парсинг JSON-строки и создание объектов вручную
             val jsonResponse = JSONObject(responseBody)

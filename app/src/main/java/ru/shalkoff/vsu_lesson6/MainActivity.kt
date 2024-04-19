@@ -2,22 +2,17 @@ package ru.shalkoff.vsu_lesson6
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import ru.shalkoff.vsu_lesson6.connection.Example1HttpURLConnection
 import ru.shalkoff.vsu_lesson6.connection.Example2HttpURLConnection
 import ru.shalkoff.vsu_lesson6.connection.Example3HttpURLConnection
 import ru.shalkoff.vsu_lesson6.databinding.ActivityMainBinding
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-
-import java.net.URL
+import ru.shalkoff.vsu_lesson6.okhttp.Example1OkHttp
+import ru.shalkoff.vsu_lesson6.okhttp.Example2OkHttp
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +21,9 @@ class MainActivity : AppCompatActivity() {
     private val example1HttpURLConnection = Example1HttpURLConnection()
     private val example2HttpURLConnection = Example2HttpURLConnection()
     private val example3HttpURLConnection = Example3HttpURLConnection()
+
+    private val example1OkHttp = Example1OkHttp()
+    private val example2OkHttp = Example2OkHttp()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,14 +42,42 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initListeners() {
-        binding.example1Btn.setOnClickListener {
-            example1HttpURLConnection.sendRequest(this)
-        }
-        binding.example2Btn.setOnClickListener {
-            example2HttpURLConnection.sendRequest(this)
-        }
-        binding.example3Btn.setOnClickListener {
-            example3HttpURLConnection.sendRequest(this)
+        with(binding) {
+            example1Btn.setOnClickListener {
+                example1HttpURLConnection.sendRequest(this@MainActivity)
+            }
+            example2Btn.setOnClickListener {
+                example2HttpURLConnection.sendRequest(this@MainActivity)
+            }
+            example3Btn.setOnClickListener {
+                example3HttpURLConnection.sendRequest(this@MainActivity)
+            }
+            example4Btn.setOnClickListener {
+                example1OkHttp.sendRequest(this@MainActivity)
+            }
+            example5Btn.setOnClickListener {
+                example2OkHttp.sendRequest(
+                    this@MainActivity,
+                    onSuccess = { responseObject ->
+                        runOnUiThread {
+                            Log.d("LESSON6", responseObject.toString())
+                            Toast.makeText(
+                                this@MainActivity,
+                                "#5 Запрос выполнился (OkHttp enqueue)",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }, onError = {
+                        runOnUiThread {
+                            Toast.makeText(
+                                this@MainActivity,
+                                "#5 Запрос выполнился с ошибкой (OkHttp enqueue)",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                )
+            }
         }
     }
 
