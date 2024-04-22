@@ -80,7 +80,7 @@ class ExampleRetrofit {
             withContext(Dispatchers.IO) {
                 try {
                     val response = scheduleApiService.getSchedule2("310")
-                    println(response)
+                    Log.d("LESSON6", response.toString())
                 } catch (e: HttpException) {
                     Log.d("LESSON6", "HTTP Error: ${e.code()}")
                 } catch (e: Exception) {

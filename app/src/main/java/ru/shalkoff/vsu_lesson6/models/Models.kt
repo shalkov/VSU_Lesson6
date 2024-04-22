@@ -36,3 +36,11 @@ data class ApiResponse(
         val EMPTY = ApiResponse(null, null)
     }
 }
+
+/**
+ * Использовать этот объект для выполнения практической работы
+ */
+data class RoutesResponse(
+    val routes: List<Route>,
+    val info: Info
+)
