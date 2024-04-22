@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import ru.shalkoff.vsu_lesson6.Const.API_URL
+import ru.shalkoff.vsu_lesson6.Const.FULL_API_URL
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -32,7 +32,7 @@ class Example1HttpURLConnection {
     }
 
     private fun request(): String? {
-        val url = URL(API_URL)
+        val url = URL(FULL_API_URL)
         val conn = url.openConnection() as HttpURLConnection
         conn.requestMethod = "GET"
 

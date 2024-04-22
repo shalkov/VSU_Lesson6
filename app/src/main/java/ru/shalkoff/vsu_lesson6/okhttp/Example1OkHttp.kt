@@ -9,22 +9,23 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.Request
-import ru.shalkoff.vsu_lesson6.Const.API_URL
+import ru.shalkoff.vsu_lesson6.Const.FULL_API_URL
 import ru.shalkoff.vsu_lesson6.models.ApiResponse
 
 class Example1OkHttp {
+
+    private val gson = Gson()
 
     fun sendRequest(activity: AppCompatActivity) {
         activity.lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 val request = Request.Builder()
-                    .url(API_URL)
+                    .url(FULL_API_URL)
                     .build()
                 val response = MyOkHttpClient.client.newCall(request).execute()
                 val responseBody = response.body?.string() ?: ""
 
                 // Десериализация JSON-строки в объект с помощью Gson
-                val gson = Gson()
                 val responseObject = gson.fromJson(responseBody, ApiResponse::class.java)
 
                 Log.d("LESSON6", responseObject.toString())

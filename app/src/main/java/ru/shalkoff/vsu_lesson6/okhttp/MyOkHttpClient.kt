@@ -5,9 +5,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 
 object MyOkHttpClient {
 
-    val client: OkHttpClient = createHttpClient()
+    val client: OkHttpClient = getHttpClient()
 
-    private fun createHttpClient(): OkHttpClient {
+    private fun getHttpClient(): OkHttpClient {
         val loggingInterceptor = HttpLoggingInterceptor()
         // Уровень логирования BODY для вывода полных данных запроса и ответа
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY

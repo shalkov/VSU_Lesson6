@@ -5,4 +5,8 @@
     <string name="example3_text">Example3</string>
     <string name="example4_text">Example4 (Okhttp execute)</string>
     <string name="example5_text">Example5 (Okhttp enqueue)</string>
+    <string name="example6_text">Example6 (Retrofit execute)</string>
+    <string name="example7_text">Example7 (Retrofit enqueue)</string>
+    <string name="example8_text">Example8 (Retrofit корутины)</string>
+    <string name="example9_text">Example9 (Retrofit rxjava)</string>
 </resources>

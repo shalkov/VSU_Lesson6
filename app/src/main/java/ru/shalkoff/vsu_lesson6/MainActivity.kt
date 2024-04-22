@@ -13,6 +13,7 @@ import ru.shalkoff.vsu_lesson6.connection.Example3HttpURLConnection
 import ru.shalkoff.vsu_lesson6.databinding.ActivityMainBinding
 import ru.shalkoff.vsu_lesson6.okhttp.Example1OkHttp
 import ru.shalkoff.vsu_lesson6.okhttp.Example2OkHttp
+import ru.shalkoff.vsu_lesson6.retrofit.ExampleRetrofit
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
 
     private val example1OkHttp = Example1OkHttp()
     private val example2OkHttp = Example2OkHttp()
+
+    private val exampleRetrofit = ExampleRetrofit()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,11 +80,24 @@ class MainActivity : AppCompatActivity() {
                     }
                 )
             }
+            example6Btn.setOnClickListener {
+                exampleRetrofit.sendRequest1(this@MainActivity)
+            }
+            example7Btn.setOnClickListener {
+                exampleRetrofit.sendRequest2(this@MainActivity)
+            }
+            example8Btn.setOnClickListener {
+                exampleRetrofit.sendRequest3(this@MainActivity)
+            }
+            example9Btn.setOnClickListener {
+                exampleRetrofit.sendRequest4(this@MainActivity)
+            }
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         example3HttpURLConnection.clearDisposables()
+        exampleRetrofit.clearDisposables()
     }
 }

@@ -8,7 +8,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import ru.shalkoff.vsu_lesson6.Const.API_URL
+import ru.shalkoff.vsu_lesson6.Const.FULL_API_URL
 import ru.shalkoff.vsu_lesson6.models.ApiResponse
 import java.net.HttpURLConnection
 import java.net.URL
@@ -21,6 +21,7 @@ import java.net.URL
  */
 class Example3HttpURLConnection {
 
+    private val gson = Gson()
     private val disposables = CompositeDisposable()
 
     fun sendRequest(context: Context) {
@@ -28,7 +29,7 @@ class Example3HttpURLConnection {
         disposables.add(Observable.fromCallable {
             var apiResponse: ApiResponse? = null
             // Выполнение операции в фоновом потоке
-            val url = URL(API_URL)
+            val url = URL(FULL_API_URL)
             val conn = url.openConnection() as HttpURLConnection
             conn.requestMethod = "GET"
 
@@ -39,7 +40,6 @@ class Example3HttpURLConnection {
                 val responseBody = inputStream.bufferedReader().use { it.readText() }
 
                 // Преобразование JSON-строки в объект ApiResponse
-                val gson = Gson()
                 apiResponse = gson.fromJson(responseBody, ApiResponse::class.java)
             }
             return@fromCallable apiResponse ?: ApiResponse.EMPTY

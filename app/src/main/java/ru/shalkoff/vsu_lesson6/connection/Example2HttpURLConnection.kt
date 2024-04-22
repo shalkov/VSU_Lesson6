@@ -6,7 +6,7 @@ import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import org.json.JSONObject
-import ru.shalkoff.vsu_lesson6.Const.API_URL
+import ru.shalkoff.vsu_lesson6.Const.FULL_API_URL
 import ru.shalkoff.vsu_lesson6.models.ApiResponse
 import ru.shalkoff.vsu_lesson6.models.Departure
 import ru.shalkoff.vsu_lesson6.models.Info
@@ -40,7 +40,7 @@ class Example2HttpURLConnection {
 
     private fun request(): ApiResponse? {
         var apiResponse: ApiResponse? = null
-        val url = URL(API_URL)
+        val url = URL(FULL_API_URL)
         val conn = url.openConnection() as HttpURLConnection
         conn.requestMethod = "GET"
 
