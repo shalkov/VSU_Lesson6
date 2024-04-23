@@ -14,3 +14,13 @@
 7. ConverterFactory
 8. CallAdapterFactory
 9. Interceptor
+
+##### Практическая работа
+
+1. Склонируйте репозиторий и запустите проект: https://github.com/shalkov/VSU_Lesson6
+2. Изучите проект.
+3. Рейлизуйте GET запрос: https://busapi.shalkoff.ru/schedule/all
+4. Возвращаемый объект уже существует в проекте: RoutesResponse, использовать его.
+5. Запрос необходимо реализовывать с помощью Retrofit, любым способом.
+
+Решение практической работы, находится в ветке <b>practice</b>
