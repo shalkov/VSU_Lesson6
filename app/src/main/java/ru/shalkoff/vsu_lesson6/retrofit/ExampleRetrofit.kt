@@ -119,6 +119,29 @@ class ExampleRetrofit {
         disposables.add(disposable)
     }
 
+    fun sendRequest5(context: Context) {
+        disposables.clear()
+
+        val disposable = scheduleApiService.getAllSchedule()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ response ->
+                Log.d("LESSON6", response.toString())
+                Toast.makeText(
+                    context,
+                    "#10 Запрос для практика",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }, { error ->
+                if (error is HttpException) {
+                    Log.d("LESSON6", "HTTP Error: ${error.code()}")
+                } else {
+                    Log.d("LESSON6", "Error: ${error.message}")
+                }
+            })
+        disposables.add(disposable)
+    }
+
     fun clearDisposables() {
         disposables.clear()
     }

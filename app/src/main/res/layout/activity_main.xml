@@ -88,4 +88,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/example8_btn" />
 
+    <Button
+        android:id="@+id/example10_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/example10_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/example9_btn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

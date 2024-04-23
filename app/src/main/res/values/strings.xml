@@ -9,4 +9,5 @@
     <string name="example7_text">Example7 (Retrofit enqueue)</string>
     <string name="example8_text">Example8 (Retrofit корутины)</string>
     <string name="example9_text">Example9 (Retrofit rxjava)</string>
+    <string name="example10_text">Практика</string>
 </resources>

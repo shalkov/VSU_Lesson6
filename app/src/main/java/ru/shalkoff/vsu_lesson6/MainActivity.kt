@@ -92,6 +92,9 @@ class MainActivity : AppCompatActivity() {
             example9Btn.setOnClickListener {
                 exampleRetrofit.sendRequest4(this@MainActivity)
             }
+            example10Btn.setOnClickListener {
+                exampleRetrofit.sendRequest5(this@MainActivity)
+            }
         }
     }
 

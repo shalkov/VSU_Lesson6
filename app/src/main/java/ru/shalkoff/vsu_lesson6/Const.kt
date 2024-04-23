@@ -6,4 +6,5 @@ object Const {
 
     const val FULL_API_URL = "${BASE_URL}/schedule/310"
     const val API_URL = "schedule/{routeId}"
+    const val API_SCHEDULE_ALL_URL = "schedule/all"
 }
